@@ -40,27 +40,41 @@ const TOP_OFFERS = [
   { name: 'Fogão FE4GG', price: 'R$ 1.099,00', image: gasRange },
 ]
 
-function ProductCard({ name, price, image }) {
+function ProductCard({ name, price, image, centered }) {
   return (
-    <div className="flex w-[176px] shrink-0 snap-start flex-col items-start gap-2">
+    <div
+      className={`flex w-[176px] shrink-0 snap-start flex-col gap-2 ${
+        centered ? 'items-center justify-center' : 'items-start'
+      }`}
+    >
       <div className="flex h-[176px] w-[176px] items-center justify-center overflow-hidden rounded-2xl bg-[#F2F4F7]">
         <img src={image} alt={name} className="h-full w-full object-contain" />
       </div>
-      <div className="flex w-full flex-col gap-1">
-        <p className="line-clamp-2 min-h-[40px] text-[16px] font-medium leading-tight text-black">{name}</p>
-        {price && <p className="text-[15px] font-semibold text-[#3C3C43]">{price}</p>}
+      <div className={`flex w-full flex-col gap-1 ${centered ? 'items-center' : ''}`}>
+        <p
+          className={`line-clamp-2 min-h-[40px] text-[16px] font-medium leading-tight text-black ${
+            centered ? 'text-center' : 'text-left'
+          }`}
+        >
+          {name}
+        </p>
+        {price && (
+          <p className={`text-[15px] font-semibold text-[#3C3C43] ${centered ? 'text-center' : 'text-left'}`}>
+            {price}
+          </p>
+        )}
       </div>
     </div>
   )
 }
 
-function Section({ title, products }) {
+function Section({ title, products, centered }) {
   return (
     <section className="flex w-full flex-col items-start gap-3 px-4">
       <h2 className="font-sf text-[20px] font-[510] text-black">{title}</h2>
       <div className="scrollbar-none flex w-full snap-x gap-4 overflow-x-auto">
         {products.map((product) => (
-          <ProductCard key={product.name} {...product} />
+          <ProductCard key={product.name} {...product} centered={centered} />
         ))}
       </div>
     </section>
@@ -92,7 +106,7 @@ export default function App() {
           </nav>
 
           <div className="flex w-full flex-col gap-8 py-4">
-            <Section title="Trending Now" products={CATEGORIES} />
+            <Section title="Trending Now" products={CATEGORIES} centered />
             <Section title="Recommended for You" products={RECOMMENDED} />
             <Section title="Top Offers" products={TOP_OFFERS} />
           </div>
