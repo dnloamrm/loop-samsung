@@ -1,4 +1,16 @@
-import { Search, User } from 'lucide-react'
+import {
+  Search,
+  User,
+  SignalHigh,
+  Wifi,
+  BatteryFull,
+  Lock,
+  ChevronLeft,
+  ChevronRight,
+  Share,
+  Bookmark,
+  SquareStack,
+} from 'lucide-react'
 import electroluxLogo from './assets/electrolux-logo.svg'
 import fridge from './assets/fridge.png'
 import washingMachine from './assets/washing-machine.png'
@@ -62,7 +74,16 @@ export default function App() {
         <div className="pointer-events-none absolute left-1/2 top-2 z-50 h-[35px] w-[125px] -translate-x-1/2 rounded-full bg-black" />
 
         <div className="scrollbar-none flex flex-1 flex-col items-start overflow-y-auto">
-          <nav className="sticky top-0 z-10 flex w-full items-center justify-between bg-[rgba(253,253,253,0.92)] px-4 py-3 backdrop-blur-[24px]">
+          <div className="sticky top-0 z-20 flex h-[54px] w-full shrink-0 items-end justify-between bg-white px-6 pb-1.5">
+            <span className="text-[15px] font-semibold text-black">9:41</span>
+            <div className="flex items-center gap-1.5 text-black">
+              <SignalHigh size={16} strokeWidth={2.2} />
+              <Wifi size={16} strokeWidth={2.2} />
+              <BatteryFull size={20} strokeWidth={1.8} />
+            </div>
+          </div>
+
+          <nav className="sticky top-[54px] z-10 flex w-full items-center justify-between bg-[rgba(253,253,253,0.92)] px-4 py-3 backdrop-blur-[24px]">
             <img src={electroluxLogo} alt="Electrolux" className="h-6" />
             <div className="flex items-center gap-4">
               <Search size={22} color="#000000" />
@@ -75,6 +96,21 @@ export default function App() {
             <Section title="Recommended for You" products={RECOMMENDED} />
             <Section title="Top Offers" products={TOP_OFFERS} />
           </div>
+        </div>
+
+        <div className="z-20 flex w-full shrink-0 flex-col items-center gap-2 bg-[rgba(253,253,253,0.92)] px-4 pb-2 pt-2 backdrop-blur-[24px]">
+          <div className="flex w-full items-center justify-center gap-1.5 rounded-lg bg-black/5 px-3 py-1.5">
+            <Lock size={12} className="text-black/60" />
+            <span className="truncate text-[13px] text-black/70">loop-samsung.vercel.app</span>
+          </div>
+          <div className="flex w-full items-center justify-between px-3">
+            <ChevronLeft size={22} className="text-black/30" />
+            <ChevronRight size={22} className="text-black" />
+            <Share size={20} className="text-black" />
+            <Bookmark size={20} className="text-black" />
+            <SquareStack size={20} className="text-black" />
+          </div>
+          <div className="h-[5px] w-[134px] rounded-full bg-black" />
         </div>
       </div>
     </div>
