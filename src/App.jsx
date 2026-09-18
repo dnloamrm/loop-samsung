@@ -1,35 +1,40 @@
-const SECTIONS = [
-  {
-    title: 'Trending Now',
-    products: [
-      { name: 'Fritadeira Elétrica Air Fryer', price: 'R$ 549,00', emoji: '🍟' },
-      { name: 'Cafeteira Expresso Automática', price: 'R$ 479,90', emoji: '☕' },
-    ],
-  },
-  {
-    title: 'Recommended for You',
-    products: [
-      { name: 'Micro-ondas Compacto 20L', price: 'R$ 529,90', emoji: '📦' },
-      { name: 'Liquidificador Turbo Mix', price: 'R$ 169,90', emoji: '🥤' },
-    ],
-  },
-  {
-    title: 'Top Offers',
-    products: [
-      { name: 'Refrigerador Frost Free 400L', price: 'R$ 2.699,00', emoji: '🧊' },
-      { name: 'Máquina de Lavar 12kg', price: 'R$ 1.549,00', emoji: '🧺' },
-    ],
-  },
+import electroluxLogo from './assets/electrolux-logo.svg'
+import fridge from './assets/fridge.png'
+import washingMachine from './assets/washing-machine.png'
+import microwave from './assets/microwave.png'
+import waterPurifier from './assets/water-purifier.png'
+import airFryer from './assets/air-fryer.png'
+import pressureCooker from './assets/pressure-cooker.png'
+import vacuum from './assets/vacuum.png'
+import inductionCooktop from './assets/induction-cooktop.png'
+import gasRange from './assets/gas-range.png'
+
+const CATEGORIES = [
+  { name: 'Home Appliances', image: fridge },
+  { name: 'Washing Machines', image: washingMachine },
 ]
 
-function ProductCard({ name, price, emoji }) {
+const RECOMMENDED = [
+  { name: 'Electrolux 20L Microwave MT30S', price: 'R$ 549,00', image: microwave },
+  { name: 'Electrolux Water Purifier PE15X', price: 'R$ 479,90', image: waterPurifier },
+]
+
+const TOP_OFFERS = [
+  { name: 'Air Fryer Digital Rita Lobo', price: 'R$ 899,90', image: airFryer },
+  { name: 'Panela de Pressão Elétrica Rita Lobo', price: 'R$ 649,90', image: pressureCooker },
+  { name: 'Aspirador Vertical 2 em 1', price: 'R$ 399,90', image: vacuum },
+  { name: 'Cooktop de Indução 4 Zonas', price: 'R$ 2.199,00', image: inductionCooktop },
+  { name: 'Fogão a Gás 4 Bocas', price: 'R$ 1.099,00', image: gasRange },
+]
+
+function ProductCard({ name, price, image }) {
   return (
     <div className="flex w-[176px] shrink-0 flex-col items-start gap-2">
-      <div className="flex h-[176px] w-[176px] items-center justify-center rounded-2xl bg-[#F2F4F7] text-5xl">
-        {emoji}
+      <div className="flex h-[176px] w-[176px] items-center justify-center overflow-hidden rounded-2xl bg-[#F2F4F7]">
+        <img src={image} alt={name} className="h-full w-full object-contain" />
       </div>
-      <p className="w-full truncate text-[13px] font-medium leading-tight text-black">{name}</p>
-      <p className="text-[15px] font-semibold text-[#002D62]">{price}</p>
+      <p className="w-full text-[13px] font-medium leading-tight text-black">{name}</p>
+      {price && <p className="text-[15px] font-semibold text-[#002D62]">{price}</p>}
     </div>
   )
 }
@@ -51,7 +56,7 @@ export default function App() {
   return (
     <div className="relative flex h-[852px] w-[393px] flex-col items-start overflow-y-auto bg-white py-4 font-sf">
       <nav className="fixed top-0 z-10 flex w-[393px] items-center justify-between bg-[rgba(253,253,253,0.92)] px-4 py-3 backdrop-blur-[24px]">
-        <span className="text-[22px] font-bold tracking-tight text-[#002D62]">Electrolux</span>
+        <img src={electroluxLogo} alt="Electrolux" className="h-6" />
         <div className="flex items-center gap-4 text-[#002D62]">
           <span aria-hidden="true">🔍</span>
           <span aria-hidden="true">🛒</span>
@@ -59,9 +64,9 @@ export default function App() {
       </nav>
 
       <div className="mt-[97px] flex w-full flex-col gap-8">
-        {SECTIONS.map((section) => (
-          <Section key={section.title} {...section} />
-        ))}
+        <Section title="Trending Now" products={CATEGORIES} />
+        <Section title="Recommended for You" products={RECOMMENDED} />
+        <Section title="Top Offers" products={TOP_OFFERS} />
       </div>
     </div>
   )
