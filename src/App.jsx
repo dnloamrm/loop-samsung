@@ -57,19 +57,25 @@ function Section({ title, products }) {
 
 export default function App() {
   return (
-    <div className="scrollbar-none relative flex h-[852px] w-[393px] flex-col items-start overflow-y-auto bg-white py-4 font-sf">
-      <nav className="fixed top-0 z-10 flex w-[393px] items-center justify-between bg-[rgba(253,253,253,0.92)] px-4 py-3 backdrop-blur-[24px]">
-        <img src={electroluxLogo} alt="Electrolux" className="h-6" />
-        <div className="flex items-center gap-4">
-          <Search size={22} color="#002D62" />
-          <User size={22} color="#002D62" />
-        </div>
-      </nav>
+    <div className="flex min-h-screen w-full items-center justify-center overflow-hidden bg-[#F5F5F7] p-8 font-sf">
+      <div className="relative flex h-[852px] w-[393px] flex-col overflow-hidden rounded-[50px] border-[12px] border-[#1C1C1E] bg-white shadow-2xl">
+        <div className="pointer-events-none absolute left-1/2 top-2 z-50 h-[35px] w-[125px] -translate-x-1/2 rounded-full bg-black" />
 
-      <div className="mt-[97px] flex w-full flex-col gap-8">
-        <Section title="Trending Now" products={CATEGORIES} />
-        <Section title="Recommended for You" products={RECOMMENDED} />
-        <Section title="Top Offers" products={TOP_OFFERS} />
+        <div className="scrollbar-none flex flex-1 flex-col items-start overflow-y-auto">
+          <nav className="sticky top-0 z-10 flex w-full items-center justify-between bg-[rgba(253,253,253,0.92)] px-4 py-3 backdrop-blur-[24px]">
+            <img src={electroluxLogo} alt="Electrolux" className="h-6" />
+            <div className="flex items-center gap-4">
+              <Search size={22} color="#000000" />
+              <User size={22} color="#000000" />
+            </div>
+          </nav>
+
+          <div className="flex w-full flex-col gap-8 py-4">
+            <Section title="Trending Now" products={CATEGORIES} />
+            <Section title="Recommended for You" products={RECOMMENDED} />
+            <Section title="Top Offers" products={TOP_OFFERS} />
+          </div>
+        </div>
       </div>
     </div>
   )
